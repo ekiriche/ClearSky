@@ -28,6 +28,7 @@ const mockWeather: WeatherData = {
   tempMin: 11.0,
   tempMax: 17.2,
   windSpeed: 5.3,
+  icon: '10d',
 };
 
 beforeEach(() => {

@@ -8,7 +8,7 @@ type OWMResponse = {
     temp_min: number;
     temp_max: number;
   };
-  weather: Array<{ description: string }>;
+  weather: Array<{ description: string; icon: string }>;
   wind: { speed: number };
 };
 
@@ -48,5 +48,6 @@ export async function fetchWeather(city: string): Promise<WeatherData> {
     tempMin: data.main.temp_min,
     tempMax: data.main.temp_max,
     windSpeed: data.wind.speed,
+    icon: data.weather[0].icon,
   };
 }

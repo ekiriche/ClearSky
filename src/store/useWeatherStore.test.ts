@@ -15,6 +15,7 @@ const mockWeatherData: WeatherData = {
   tempMin: 12.0,
   tempMax: 18.0,
   windSpeed: 5.3,
+  icon: '10d',
 };
 
 const initialState = {

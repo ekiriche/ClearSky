@@ -24,7 +24,7 @@ export function WeatherSearch() {
           onChange={(e) => setValue(e.target.value)}
           placeholder="Enter city name"
           disabled={loading}
-          className="w-full rounded-full border border-blue-100 bg-white py-3 pl-5 pr-12 text-slate-700 shadow-sm outline-none ring-blue-200 placeholder:text-slate-400 focus:ring-2 disabled:opacity-50"
+          className="w-full rounded-full border border-blue-100 bg-white py-3 pl-5 pr-12 text-slate-700 shadow-sm outline-none ring-blue-200 placeholder:text-slate-400 focus:ring-2 transition-shadow duration-150 disabled:opacity-50"
         />
         <button
           type="submit"

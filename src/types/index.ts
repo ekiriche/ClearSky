@@ -6,6 +6,7 @@ export type WeatherData = {
   tempMin: number;
   tempMax: number;
   windSpeed: number;
+  icon: string;
 };
 
 export type HistoryItem = {

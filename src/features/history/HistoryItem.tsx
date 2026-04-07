@@ -2,6 +2,17 @@ import { Clock, X } from 'lucide-react';
 import { useWeatherStore } from '../../store/useWeatherStore';
 import type { HistoryItem } from '../../types';
 
+function formatRelativeTime(timestamp: number): string {
+  const diffMs = Date.now() - timestamp;
+  const diffMins = Math.floor(diffMs / 60_000);
+  if (diffMins < 1) return 'just now';
+  if (diffMins < 60) return `${diffMins}m ago`;
+  const diffHours = Math.floor(diffMins / 60);
+  if (diffHours < 24) return `${diffHours}h ago`;
+  const diffDays = Math.floor(diffHours / 24);
+  return `${diffDays}d ago`;
+}
+
 type Props = {
   item: HistoryItem;
 };
@@ -10,13 +21,7 @@ export function HistoryItem({ item }: Props) {
   const searchCity = useWeatherStore((s) => s.searchCity);
   const removeHistoryItem = useWeatherStore((s) => s.removeHistoryItem);
 
-  const formattedDate = new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-  }).format(new Date(item.searchedAt));
+  const formattedDate = formatRelativeTime(item.searchedAt);
 
   return (
     <div className="flex items-center justify-between gap-2 rounded-xl bg-white border border-blue-100 shadow-sm px-4 py-3">
