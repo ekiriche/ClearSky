@@ -40,6 +40,7 @@ type WeatherActions = {
   searchCity: (city: string) => Promise<void>;
   removeHistoryItem: (city: string) => void;
   undoRemove: () => void;
+  clearLastRemoved: () => void;
 };
 
 export const useWeatherStore = create<WeatherState & WeatherActions>((set, get) => ({
@@ -83,4 +84,6 @@ export const useWeatherStore = create<WeatherState & WeatherActions>((set, get) 
     set({ history: nextHistory, lastRemoved: null });
     saveHistory(nextHistory);
   },
+
+  clearLastRemoved: () => set({ lastRemoved: null }),
 }));
