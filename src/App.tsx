@@ -1,7 +1,11 @@
-import './App.css';
+import { WeatherSearch } from './features/weather/WeatherSearch';
 
 function App() {
-  return <div>Nothing here</div>;
+  return (
+    <div>
+      <WeatherSearch />
+    </div>
+  );
 }
 
 export default App;
