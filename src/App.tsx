@@ -8,11 +8,11 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-sky-50 to-indigo-100 flex flex-col">
       <Header />
-      <div className="flex flex-col items-center justify-start py-10 px-4 gap-6">
+      <main className="flex flex-col items-center justify-start py-10 px-4 gap-6 ">
         <WeatherSearch />
         <WeatherDisplay />
         <HistoryList />
-      </div>
+      </main>
       <UndoToast />
     </div>
   );

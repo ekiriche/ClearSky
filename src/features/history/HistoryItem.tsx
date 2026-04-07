@@ -24,24 +24,27 @@ export function HistoryItem({ item }: Props) {
   const formattedDate = formatRelativeTime(item.searchedAt);
 
   return (
-    <div className="flex items-center justify-between gap-2 rounded-xl bg-white border border-blue-100 shadow-sm px-4 py-3">
+    <li className="flex items-center justify-between gap-2 rounded-xl bg-white border border-blue-100 shadow-sm px-4 py-3">
       <div className="flex items-center gap-2 min-w-0">
         <button
           onClick={() => searchCity(item.city)}
+          aria-label={`Search weather for ${item.city}, searched ${formattedDate}`}
           className="text-sm font-medium text-slate-700 hover:text-blue-500 transition-colors truncate cursor-pointer"
         >
           {item.city}
         </button>
         <Clock className="h-3.5 w-3.5 text-blue-400 shrink-0" aria-hidden="true" />
-        <span className="text-xs text-slate-400 whitespace-nowrap">{formattedDate}</span>
+        <span className="text-xs text-slate-500 whitespace-nowrap" aria-hidden="true">
+          {formattedDate}
+        </span>
       </div>
       <button
         onClick={() => removeHistoryItem(item.city)}
         aria-label={`Remove ${item.city}`}
-        className="flex items-center justify-center h-6 w-6 rounded-full text-slate-400 hover:text-red-400 hover:bg-red-50 transition-colors shrink-0 cursor-pointer"
+        className="flex items-center justify-center h-6 w-6 rounded-full text-slate-500 hover:text-red-400 hover:bg-red-50 transition-colors shrink-0 cursor-pointer"
       >
         <X className="h-4 w-4" aria-hidden="true" />
       </button>
-    </div>
+    </li>
   );
 }

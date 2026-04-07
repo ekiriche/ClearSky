@@ -11,11 +11,11 @@ export function HistoryList() {
       <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
         Recent Searches
       </h2>
-      <div className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2">
         {history.map((item) => (
           <HistoryItem key={item.city} item={item} />
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
