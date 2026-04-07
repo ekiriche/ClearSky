@@ -57,7 +57,7 @@ src/
 - Input: city name (text)
 - On submit: fetch weather, display results
 - Display: current temperature, description, min/max temp, wind speed
-- Source: OpenWeatherMap or WeatherAPI via `services/weatherService.ts`
+- Source: OpenWeatherMap via `services/weatherService.ts`
 
 ### 2. Search History
 
@@ -123,7 +123,7 @@ Never show raw API error messages to the user.
 - Components: `PascalCase.tsx`
 - Hooks: `useSomething.ts`
 - Utilities: `camelCase.ts`
-- Types: use `interface` for objects, `type` for unions/aliases — be consistent throughout
+- Types: use `type` instead of `inteface` everywhere
 
 ---
 
