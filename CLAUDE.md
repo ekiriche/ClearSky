@@ -1,11 +1,13 @@
 # ClearSky — Weather Forecast App
 
 ## Project Summary
+
 React + TypeScript weather app. Users search cities, view weather, manage search history with remove + undo.
 
 ---
 
 ## Constraints (apply always)
+
 - Do NOT over-engineer. No speculative abstractions.
 - Do NOT add features beyond what is specified.
 - Do NOT hardcode API keys. Use `VITE_WEATHER_API_KEY` from `.env`.
@@ -17,19 +19,21 @@ React + TypeScript weather app. Users search cities, view weather, manage search
 ---
 
 ## Tech Stack
-| Concern        | Tool                        |
-|----------------|-----------------------------|
-| UI             | React (functional only)     |
-| Language       | TypeScript (strict)         |
-| State          | Zustand                     |
-| Styling        | Tailwind CSS                |
-| Data fetching  | Fetch API                   |
-| Testing        | Vitest + React Testing Library |
-| Build          | Vite                        |
+
+| Concern       | Tool                           |
+| ------------- | ------------------------------ |
+| UI            | React (functional only)        |
+| Language      | TypeScript (strict)            |
+| State         | Zustand                        |
+| Styling       | Tailwind CSS                   |
+| Data fetching | Fetch API                      |
+| Testing       | Vitest + React Testing Library |
+| Build         | Vite                           |
 
 ---
 
 ## Folder Structure
+
 ```
 src/
   components/       # Shared/generic UI components
@@ -49,12 +53,14 @@ src/
 ## Features & Behavior
 
 ### 1. Weather Search
+
 - Input: city name (text)
 - On submit: fetch weather, display results
 - Display: current temperature, description, min/max temp, wind speed
 - Source: OpenWeatherMap or WeatherAPI via `services/weatherService.ts`
 
 ### 2. Search History
+
 - Persist in `localStorage`
 - Show list of previously searched cities
 - Clicking a history item re-fetches weather for that city
@@ -62,10 +68,12 @@ src/
 - City matching is case-insensitive
 
 ### 3. Remove History Item
+
 - Each item has a remove button
 - Removal updates UI immediately
 
 ### 4. Undo Remove
+
 - Only single-level undo (last removed item only)
 - Show "Undo" button after a removal
 - On undo: restore item to its **original position** in the list
@@ -74,6 +82,7 @@ src/
 ---
 
 ## State Shape (Zustand)
+
 ```ts
 {
   weather: WeatherData | null
@@ -87,7 +96,9 @@ src/
 ---
 
 ## Service Layer (`services/weatherService.ts`)
+
 Responsibilities:
+
 - Build and execute API requests
 - Transform raw API response → `WeatherData` type
 - Throw typed errors (network failure, city not found, rate limit)
@@ -95,18 +106,20 @@ Responsibilities:
 ---
 
 ## Error Handling
-| Scenario              | UI Behavior                            |
-|-----------------------|----------------------------------------|
-| Network failure       | "Unable to reach weather service."     |
-| City not found        | "City not found. Try another name."    |
-| Empty/whitespace input| Prevent submission, no error shown     |
-| API rate limit        | "Too many requests. Try again later."  |
+
+| Scenario               | UI Behavior                           |
+| ---------------------- | ------------------------------------- |
+| Network failure        | "Unable to reach weather service."    |
+| City not found         | "City not found. Try another name."   |
+| Empty/whitespace input | Prevent submission, no error shown    |
+| API rate limit         | "Too many requests. Try again later." |
 
 Never show raw API error messages to the user.
 
 ---
 
 ## Naming Conventions
+
 - Components: `PascalCase.tsx`
 - Hooks: `useSomething.ts`
 - Utilities: `camelCase.ts`
@@ -115,7 +128,9 @@ Never show raw API error messages to the user.
 ---
 
 ## Testing
+
 Write tests for:
+
 - `weatherService.ts` (request building, response mapping, error handling)
 - Zustand store (history add/remove/undo transitions)
 - Input validation utilities
@@ -126,6 +141,7 @@ Do NOT write snapshot tests. Focus on behavior, not structure.
 ---
 
 ## Implementation Order
+
 1. Types (`types/`)
 2. `weatherService.ts` + tests
 3. Zustand store + tests
@@ -137,6 +153,7 @@ Do NOT write snapshot tests. Focus on behavior, not structure.
 ---
 
 ## Environment
+
 ```
 # .env.example
 VITE_WEATHER_API_KEY=your_key_here
@@ -145,6 +162,7 @@ VITE_WEATHER_API_KEY=your_key_here
 ---
 
 ## Documentation
+
 - `README.md`: setup, env vars, run app, run tests, build
 - Inline comments only where logic is non-obvious
 - Let naming carry the documentation load
