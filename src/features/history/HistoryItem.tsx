@@ -23,7 +23,7 @@ export function HistoryItem({ item }: Props) {
       <div className="flex items-center gap-2 min-w-0">
         <button
           onClick={() => searchCity(item.city)}
-          className="text-sm font-medium text-slate-700 hover:text-blue-500 transition-colors truncate"
+          className="text-sm font-medium text-slate-700 hover:text-blue-500 transition-colors truncate cursor-pointer"
         >
           {item.city}
         </button>
@@ -33,7 +33,7 @@ export function HistoryItem({ item }: Props) {
       <button
         onClick={() => removeHistoryItem(item.city)}
         aria-label={`Remove ${item.city}`}
-        className="flex items-center justify-center h-6 w-6 rounded-full text-slate-400 hover:text-red-400 hover:bg-red-50 transition-colors shrink-0"
+        className="flex items-center justify-center h-6 w-6 rounded-full text-slate-400 hover:text-red-400 hover:bg-red-50 transition-colors shrink-0 cursor-pointer"
       >
         <X className="h-4 w-4" aria-hidden="true" />
       </button>
