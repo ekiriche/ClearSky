@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# ClearSky
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A weather forecast app. Search any city and get the current weather, with a persistent search history and undo support.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Weather search** — current temperature, feels like, min/max, wind speed, and weather description
+- **Search history** — persisted in `localStorage`, up to 10 entries; clicking an entry re-fetches weather
+- **Deduplication** — searching an existing city moves it to the top instead of adding a duplicate
+- **Remove & undo** — remove any history entry; an undo toast appears for 5 seconds to restore it
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Concern       | Tool                             |
+| ------------- | -------------------------------- |
+| UI            | React 19 (functional components) |
+| Language      | TypeScript (strict)              |
+| State         | Zustand                          |
+| Styling       | Tailwind CSS + Lucide React      |
+| Data fetching | Fetch API                        |
+| Testing       | Vitest + React Testing Library   |
+| Build         | Vite                             |
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js 18+
+- An [OpenWeatherMap](https://openweathermap.org/api) API key (free tier works)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Setup
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+git clone <repo-url>
+cd ClearSky
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Copy the environment template and add your API key:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+cp .env.example .env
 ```
+
+```
+# .env
+VITE_WEATHER_API_KEY=your_key_here
+```
+
+Start the dev server:
+
+```bash
+npm run dev
+```
+
+## Available Scripts
+
+| Command           | Description                         |
+| ----------------- | ----------------------------------- |
+| `npm run dev`     | Start dev server with HMR           |
+| `npm run build`   | Type-check and build for production |
+| `npm run preview` | Preview the production build        |
+| `npm run test`    | Run unit tests                      |
+| `npm run test:ui` | Run tests in the Vitest UI          |
+| `npm run lint`    | Run ESLint                          |
+| `npm run format`  | Format code with Prettier           |
+
+## Environment Variables
+
+| Variable               | Required | Description            |
+| ---------------------- | -------- | ---------------------- |
+| `VITE_WEATHER_API_KEY` | Yes      | OpenWeatherMap API key |
