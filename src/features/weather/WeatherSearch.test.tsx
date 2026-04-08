@@ -75,7 +75,7 @@ describe('WeatherSearch', () => {
     setupStore({ loading: true });
     render(<WeatherSearch />);
     expect(screen.getByPlaceholderText('Enter city name')).toBeDisabled();
-    expect(screen.getByRole('button', { name: 'Search' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Searching…' })).toBeDisabled();
   });
 
   it('disables button when input is empty', () => {

@@ -36,10 +36,10 @@ beforeEach(() => {
 });
 
 describe('WeatherDisplay', () => {
-  it('renders nothing when weather is null and not loading', () => {
+  it('renders the empty state when weather is null and not loading', () => {
     setupStore({ loading: false, weather: null });
-    const { container } = render(<WeatherDisplay />);
-    expect(container).toBeEmptyDOMElement();
+    render(<WeatherDisplay />);
+    expect(screen.getByText('Search a city to see the weather')).toBeInTheDocument();
   });
 
   it('renders loading skeleton when loading is true', () => {

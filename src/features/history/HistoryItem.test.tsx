@@ -35,20 +35,27 @@ describe('HistoryItem', () => {
   it('renders the city name', () => {
     setupStore();
     render(<HistoryItem item={mockItem} />);
-    expect(screen.getByRole('button', { name: 'London' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Search weather for London/ })).toBeInTheDocument();
   });
 
   it('renders the formatted timestamp', () => {
-    setupStore();
-    render(<HistoryItem item={mockItem} />);
-    expect(screen.getByText(/Apr 7, 2026/)).toBeInTheDocument();
+    const dateSpy = vi
+      .spyOn(Date, 'now')
+      .mockReturnValue(new Date('2026-04-08T14:34:00').getTime());
+    try {
+      setupStore();
+      render(<HistoryItem item={mockItem} />);
+      expect(screen.getByText('1d ago')).toBeInTheDocument();
+    } finally {
+      dateSpy.mockRestore();
+    }
   });
 
   it('calls searchCity with the city when the city button is clicked', async () => {
     const { searchCity } = setupStore();
     const user = userEvent.setup();
     render(<HistoryItem item={mockItem} />);
-    await user.click(screen.getByRole('button', { name: 'London' }));
+    await user.click(screen.getByRole('button', { name: /Search weather for London/ }));
     expect(searchCity).toHaveBeenCalledOnce();
     expect(searchCity).toHaveBeenCalledWith('London');
   });
@@ -66,7 +73,7 @@ describe('HistoryItem', () => {
     const { removeHistoryItem } = setupStore();
     const user = userEvent.setup();
     render(<HistoryItem item={mockItem} />);
-    await user.click(screen.getByRole('button', { name: 'London' }));
+    await user.click(screen.getByRole('button', { name: /Search weather for London/ }));
     expect(removeHistoryItem).not.toHaveBeenCalled();
   });
 
