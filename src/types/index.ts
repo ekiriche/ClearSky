@@ -14,7 +14,7 @@ export type HistoryItem = {
   searchedAt: number;
 };
 
-export type WeatherErrorKind = 'not_found' | 'network' | 'rate_limit';
+export type WeatherErrorKind = 'not_found' | 'network' | 'rate_limit' | 'no_api_key';
 
 export type WeatherError = {
   kind: WeatherErrorKind;

@@ -71,19 +71,6 @@ describe('WeatherSearch', () => {
     expect(searchCity).toHaveBeenCalledWith('Paris');
   });
 
-  it('disables input and button while loading', () => {
-    setupStore({ loading: true });
-    render(<WeatherSearch />);
-    expect(screen.getByPlaceholderText('Enter city name')).toBeDisabled();
-    expect(screen.getByRole('button', { name: 'Searching…' })).toBeDisabled();
-  });
-
-  it('disables button when input is empty', () => {
-    setupStore();
-    render(<WeatherSearch />);
-    expect(screen.getByRole('button', { name: 'Search' })).toBeDisabled();
-  });
-
   it('enables button once input has non-whitespace text', async () => {
     setupStore();
     const user = userEvent.setup();

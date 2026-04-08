@@ -17,12 +17,18 @@ function makeWeatherError(kind: WeatherError['kind']): WeatherError {
     not_found: 'City not found. Try another name.',
     network: 'Unable to reach weather service.',
     rate_limit: 'Too many requests. Try again later.',
+    no_api_key: 'API key is missing. Please set VITE_WEATHER_API_KEY in your .env file.',
   };
   return { kind, message: messages[kind] };
 }
 
 export async function fetchWeather(city: string): Promise<WeatherData> {
-  const apiKey = import.meta.env.VITE_WEATHER_API_KEY as string;
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
+  if (!apiKey) {
+    throw makeWeatherError('no_api_key');
+  }
+
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${apiKey}`;
 
   let response: Response;

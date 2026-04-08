@@ -8,7 +8,9 @@ export function WeatherSearch() {
   const loading = useWeatherStore((s) => s.loading);
   const error = useWeatherStore((s) => s.error);
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    if (loading) return;
+
     e.preventDefault();
     const trimmed = value.trim();
     if (!trimmed) return;
@@ -24,12 +26,10 @@ export function WeatherSearch() {
           onChange={(e) => setValue(e.target.value)}
           placeholder="Enter city name"
           aria-label="City name"
-          disabled={loading}
           className="w-full rounded-full border border-blue-100 bg-white py-3 pl-5 pr-12 text-slate-700 shadow-sm outline-none ring-blue-200 placeholder:text-slate-400 focus:ring-2 transition-shadow duration-150 disabled:opacity-50"
         />
         <button
           type="submit"
-          disabled={loading || !value.trim()}
           aria-busy={loading}
           aria-label={loading ? 'Searching…' : 'Search'}
           className="cursor-pointer absolute right-2 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-blue-500 text-white transition-colors hover:bg-blue-600 disabled:opacity-40"
